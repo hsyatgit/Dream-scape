@@ -4,7 +4,7 @@
 
 本文是产品设计与证据记录，不是系统综述，也不是医疗建议。证据等级与阅读状态沿用同日的设计笔记，不把笔记里没读到的内容补成看起来像引用的句子。
 
-**实现状态。** 本文写作时，仓库里还没有应用代码。下文「眠境中的做法」、播放引擎、提供者接口、设置页、加密存储和 GitHub Actions 调试包，都是**计划中**的实现，不是已经可以安装的功能。分段加深、快速诱导、混淆诱导、惊吓诱导、年龄退行和失忆暗示**不在计划内**：单向语音做不到，或风险不适合这个应用。
+**实现状态。** 仓库里有一个可编译的 Android 骨架：会话前访谈、阶段模板与随机槽位、雨窗和林间两份内置中文样稿、整稿解析、有界预合成和按稿静音的播放、前台服务与媒体会话、三种可替换接口、本机加密配置、导入导出，以及 GitHub Actions 调试包。云端接口要使用者自己的密钥，仓库不代为接通某一家服务，也不把联调结果写成已经验证。签名发布构建默认关闭。分段加深、快速诱导、混淆诱导、惊吓诱导、年龄退行和失忆暗示**不做**。播放中无法处理情绪涌现，替代仍是会话前筛查和可退出句。
 
 ---
 
@@ -44,17 +44,17 @@ APA 第 30 分会的修订定义把催眠描述为「聚焦注意、外周觉察
 
 | # | 阶段 | 常见做法 | 目的 | 等级 | 眠境中的做法 |
 |---|---|---|---|---|---|
-| 0 | 前谈与期望 | 说明这是合作，不是被控制；澄清误解；问目标；说明可以随时睁眼、随时结束 | 把期望放在可核对的位置上，减少「会被控制」的误解 | B | 计划：开场固定一句掌控权声明，极短，引导正文里不再提问。期望放在会话前访谈，不放进语音 |
-| 1 | 访谈与筛查 | 目标、病史、禁忌、偏好、既往经历 | 安全，以及让内容跟得上这个人 | A（原则）/ C（具体题目） | 计划：播放前一次做完。红旗者不进入想象。见第 6 节 |
-| 2 | 渐进放松 | 肌肉紧了再松、自生训练的沉重与温暖、腹式呼吸、身体扫描 | 降低身体唤醒，给后面的注意聚焦一个依托 | B | 计划：呼吸、躺好、被床或椅子接住。不做「必须先绷紧再松开」的测验 |
-| 3 | 清空思绪 | 注意收到一个锚（呼吸、声音、身体一处）；念头经过，不去追 | 降低睡前觉醒和反复想 | B（机制）/ I（具体句子） | 计划：写成「念头像云一样自己过去」。不写「什么都别想」 |
-| 4 | 诱导 | 眼睛固定与疲劳闭眼；渐进放松；Elman 式快速法；混淆；惊吓 | 把注意收窄，为暗示准备条件 | B（诱导整体有用，形式差异小） | 计划：只用闭眼、呼吸和渐进放松。快速、混淆、惊吓不实现 |
-| 5 | 加深 | 倒数、楼梯、分段加深（fractionation）、手臂沉重或下落、累加暗示、身体扫描 | 把同一种放松再说深一层 | C | 计划：身体扫描、楼梯、倒数三选一，一场一条主路径。分段加深不实现 |
-| 6 | 意象 | 安全的地方；看、听、触、温度、气味；与睡眠相配的下沉隐喻 | 给注意一个可停留的内容 | B | 计划：九层空间，由远到近。固定一句「这里很安全，一切都安稳。」 |
-| 7 | 暗示与自我强化 | 直接或许可式短句；恢复应对感；睡眠场次用睡眠方向的句子 | 把场次的方向说清楚 | A（睡眠暗示的方向）/ B（风格、自我强化） | 计划：短句、正向、能自然发生。助眠只指向更松、更沉、更安稳。使用者的句子先清洗 |
-| 8 | 后催眠暗示 | 一个轻的线索（呼吸、肩沉、一个词），以后自己唤回放松 | 给日后一个条件线索 | B（实验室）/ I（助眠） | 计划：只在日间场次留一句锚。助眠场次省略 |
-| 9a | 唤醒（日间） | 把人带回房间，给清醒、轻松的句子，确认回到当下 | 终止要结构清楚，不把人留在很深的状态 | B | 计划：日间场次必唤醒，固定句「睁开眼睛，就回到这个房间。」 |
-| 9b | 睡眠过渡 | 不数数唤醒；句子变短变慢；邀请随时睡去 | 让录音停在睡眠门口 | B | 计划：助眠收束不倒数、不点名唤醒，句子越来越短，停顿按稿子变长 |
+| 0 | 前谈与期望 | 说明这是合作，不是被控制；澄清误解；问目标；说明可以随时睁眼、随时结束 | 把期望放在可核对的位置上，减少「会被控制」的误解 | B | 骨架：开场固定一句掌控权声明，极短，引导正文里不再提问。期望放在会话前访谈，不放进语音 |
+| 1 | 访谈与筛查 | 目标、病史、禁忌、偏好、既往经历 | 安全，以及让内容跟得上这个人 | A（原则）/ C（具体题目） | 骨架：播放前一次做完。红旗者不进入想象。见第 6 节 |
+| 2 | 渐进放松 | 肌肉紧了再松、自生训练的沉重与温暖、腹式呼吸、身体扫描 | 降低身体唤醒，给后面的注意聚焦一个依托 | B | 骨架：呼吸、躺好、被床或椅子接住。不做「必须先绷紧再松开」的测验 |
+| 3 | 清空思绪 | 注意收到一个锚（呼吸、声音、身体一处）；念头经过，不去追 | 降低睡前觉醒和反复想 | B（机制）/ I（具体句子） | 骨架：写成「念头像云一样自己过去」。不写「什么都别想」 |
+| 4 | 诱导 | 眼睛固定与疲劳闭眼；渐进放松；Elman 式快速法；混淆；惊吓 | 把注意收窄，为暗示准备条件 | B（诱导整体有用，形式差异小） | 骨架：只用闭眼、呼吸和渐进放松。快速、混淆、惊吓不实现 |
+| 5 | 加深 | 倒数、楼梯、分段加深（fractionation）、手臂沉重或下落、累加暗示、身体扫描 | 把同一种放松再说深一层 | C | 骨架：身体扫描、楼梯、倒数三选一，一场一条主路径。分段加深不实现 |
+| 6 | 意象 | 安全的地方；看、听、触、温度、气味；与睡眠相配的下沉隐喻 | 给注意一个可停留的内容 | B | 骨架：九层空间，由远到近。固定一句「这里很安全，一切都安稳。」 |
+| 7 | 暗示与自我强化 | 直接或许可式短句；恢复应对感；睡眠场次用睡眠方向的句子 | 把场次的方向说清楚 | A（睡眠暗示的方向）/ B（风格、自我强化） | 骨架：短句、正向、能自然发生。助眠只指向更松、更沉、更安稳。使用者的句子先清洗 |
+| 8 | 后催眠暗示 | 一个轻的线索（呼吸、肩沉、一个词），以后自己唤回放松 | 给日后一个条件线索 | B（实验室）/ I（助眠） | 骨架：只在日间场次留一句锚。助眠场次省略 |
+| 9a | 唤醒（日间） | 把人带回房间，给清醒、轻松的句子，确认回到当下 | 终止要结构清楚，不把人留在很深的状态 | B | 骨架：日间场次必唤醒，固定句「睁开眼睛，就回到这个房间。」 |
+| 9b | 睡眠过渡 | 不数数唤醒；句子变短变慢；邀请随时睡去 | 让录音停在睡眠门口 | B | 骨架：助眠收束不倒数、不点名唤醒，句子越来越短，停顿按稿子变长 |
 | 10 | 事后 | 情绪涌现时留在支持性的状态里，必要时转诊 | 处理少数不适反应 | B | 单向语音做不到实时处理。替代是会话前筛查，加上语音里的可退出句。不计划做会话中的临床干预 |
 
 20–30 分钟不是疗效门槛。Cordi 的录音约 13 分钟、932 个词（德语，语速很慢）【已开】[1]。时长在眠境里是体验选择。
@@ -298,9 +298,9 @@ constraints:
 
 ---
 
-## 6. AI 实现（计划）
+## 6. AI 实现
 
-本节全部是**计划中的软件设计**。仓库尚未包含这些模块。
+本节是软件设计，也是当前骨架的结构。标成「计划」的句子是还没有做成产品能力的部分。云端供应商的真实账号不在测试范围内。
 
 ### 6.1 开环
 
@@ -410,7 +410,7 @@ flowchart TD
 
 ### 6.6 数据与隐私
 
-计划：API 密钥只放在本机，用 Android Keystore 支持的加密存储（EncryptedSharedPreferences，或同等的加密方案）。配置可以导出为 JSON，并可以选择不带密钥。导入同样只写入本机。备份关闭，避免密钥进入云备份。日志不写密钥。播放服务不申请麦克风。麦克风权限只在使用者点击识别测试时请求。
+骨架：API 密钥只放在本机，用 Android Keystore 支持的加密存储（EncryptedSharedPreferences，或同等的加密方案）。配置可以导出为 JSON，并可以选择不带密钥。导入同样只写入本机。备份关闭，避免密钥进入云备份。日志不写密钥。播放服务不申请麦克风。麦克风权限只在使用者点击识别测试时请求。
 
 ### 6.7 模块关系
 
@@ -436,11 +436,9 @@ flowchart LR
 
 ---
 
-## 7. 获取与构建（计划）
+## 7. 获取与构建
 
-应用代码和构建工作流进入仓库之后，才有可下载的安装包。在那之前，Actions 里不会有这个应用的 APK。
-
-计划中的 **Build** 工作流在推送、拉取请求和手动运行时触发，使用 JDK 17，缓存 Gradle，执行 `assembleDebug`，并在单元测试和 lint 足够快的时候一并运行。调试 APK 作为名为 `dreamscape-debug-apk` 的 Artifact 上传。那是调试签名，只供个人安装。
+**Build** 工作流在推送、拉取请求和手动运行时触发，使用 JDK 17，缓存 Gradle，执行 `assembleDebug`，并运行单元测试和 lint。调试 APK 作为名为 `dreamscape-debug-apk` 的 Artifact 上传。那是调试签名，只供个人安装。
 
 本地：
 
@@ -448,13 +446,13 @@ flowchart LR
 ./gradlew assembleDebug
 ```
 
-调试包计划位于 `app/build/outputs/apk/debug/`。
+调试包位于 `app/build/outputs/apk/debug/`。
 
 标签上的签名发布构建**默认关闭**。若要启用，需要在仓库 Secrets 中配置密钥库的 Base64 和密码，并修改工作流里的条件。密钥库文件不提交。
 
 ---
 
-## 8. 配置（计划）
+## 8. 配置
 
 设置屏为合成、识别、对话模型分别选择实现并填写字段。
 
@@ -518,7 +516,7 @@ A voice-guided hypnosis and sleep-aid Android app. Design note and evidence memo
 
 This document records the product design and the evidence it rests on. It is not a systematic review and it is not medical advice. Evidence grades and reading status follow the design notes of the same date. Where those notes did not find a source, this document does not invent one.
 
-**Implementation status.** When this document was written, the repository did not yet contain application code. The behavior described under “What Dreamscape does,” the playback engine, the provider interfaces, the settings screen, encrypted storage, and the GitHub Actions debug APK are **planned**. They are not features you can install yet. Fractionation, rapid induction, confusion induction, startle induction, age regression, and amnesia suggestions are **not planned**. One-way audio cannot do them, or they do not belong in this app.
+**Implementation status.** The repository contains a compilable Android skeleton: the pre-session intake, phase templates and seeded slots, built-in Chinese rain-window and forest-cabin scripts, script parsing, bounded prefetch with scripted silence, a foreground service and media session, the three replaceable interfaces, encrypted on-device configuration, import and export, and a GitHub Actions debug APK. Cloud endpoints need the listener’s own key. This repository does not call a vendor on their behalf, and it does not treat an untested live account as verified. The signed release job stays off. Fractionation, rapid induction, confusion induction, startle induction, age regression, and amnesia suggestions are **not implemented**. A surge of emotion during playback cannot be handled live; screening beforehand and an exit line are the substitute.
 
 ---
 
@@ -558,17 +556,17 @@ The revised APA Division 30 definition describes hypnosis as a state of focused 
 
 | # | Phase | Common practice | Purpose | Grade | What Dreamscape does |
 |---|---|---|---|---|---|
-| 0 | Pre-talk and expectation | Cooperation, not control; correct misunderstandings; ask the goal; say that the eyes can open and the session can stop | Put expectation where it can be checked, and drop the idea of being controlled | B | Planned: one fixed control line at the opening. The spoken script does not ask questions. Expectations are collected in the intake |
-| 1 | Intake and screening | Goal, history, contraindications, preferences, past experience | Safety, and a script that fits this person | A (principle) / C (the exact items) | Planned: once, before playback. Red flags do not enter imagery. See section 6 of the Chinese text and 2.5 below |
-| 2 | Progressive relaxation | Tense-and-release, autogenic heaviness and warmth, abdominal breathing, body scan | Lower bodily arousal and give attention somewhere to rest | B | Planned: breathing, settling, being supported by the bed or the chair. No “tense, then report” test |
-| 3 | Clearing the mind | Attention narrowed to one anchor (breath, sound, one place in the body); thoughts may pass | Lower pre-sleep arousal and worry | B (mechanism) / I (the sentences) | Planned: thoughts pass like clouds. The script does not order a blank mind |
-| 4 | Induction | Eye fixation and fatigue closure; progressive relaxation; Elman rapid method; confusion; startle | Narrow attention so suggestion has somewhere to land | B (induction helps; form matters little) | Planned: eye closure, breathing, and progressive relaxation only. Rapid, confusion, and startle methods are not implemented |
-| 5 | Deepening | Countdown, staircase, fractionation, arm heaviness or levitation, compounding, body scan | Say the same relaxation one layer deeper | C | Planned: body scan, staircase, or countdown, one main path per session. Fractionation is not implemented |
-| 6 | Imagery | A safe place; sight, sound, touch, temperature, smell; a descent metaphor that matches sleep | Give attention somewhere to stay | B | Planned: nine spatial layers, far to near. One fixed line: this place is safe and settled |
-| 7 | Suggestion and ego-strengthening | Short direct or permissive lines; restored sense of coping; sleep-specific lines in a sleep session | Make the direction of the session explicit | A (direction of sleep suggestions) / B (style and ego-strengthening) | Planned: short, positive, able to happen on their own. Sleep sessions point only toward looser, deeper, more settled. The listener’s lines are cleaned first |
-| 8 | Post-hypnotic suggestion | A light cue (breath, a shoulder dropping, a word) that can recall ease later | A conditional cue for later | B (laboratory) / I (sleep) | Planned: one anchor in daytime sessions only. Omitted from sleep sessions |
-| 9a | Emergence (daytime) | Bring the person back to the room with clear, light lines | Termination should be structured. The person is not left deep | B | Planned: daytime sessions always emerge. Fixed line: open the eyes and return to this room |
-| 9b | Sleep transition | No wake-up count; sentences get shorter and slower; an invitation to sleep | Stop the recording at the threshold of sleep | B | Planned: no countdown and no call to wake. Sentences shorten. Pauses lengthen as written |
+| 0 | Pre-talk and expectation | Cooperation, not control; correct misunderstandings; ask the goal; say that the eyes can open and the session can stop | Put expectation where it can be checked, and drop the idea of being controlled | B | Skeleton: one fixed control line at the opening. The spoken script does not ask questions. Expectations are collected in the intake |
+| 1 | Intake and screening | Goal, history, contraindications, preferences, past experience | Safety, and a script that fits this person | A (principle) / C (the exact items) | Skeleton: once, before playback. Red flags do not enter imagery. See section 6 of the Chinese text and 2.5 below |
+| 2 | Progressive relaxation | Tense-and-release, autogenic heaviness and warmth, abdominal breathing, body scan | Lower bodily arousal and give attention somewhere to rest | B | Skeleton: breathing, settling, being supported by the bed or the chair. No “tense, then report” test |
+| 3 | Clearing the mind | Attention narrowed to one anchor (breath, sound, one place in the body); thoughts may pass | Lower pre-sleep arousal and worry | B (mechanism) / I (the sentences) | Skeleton: thoughts pass like clouds. The script does not order a blank mind |
+| 4 | Induction | Eye fixation and fatigue closure; progressive relaxation; Elman rapid method; confusion; startle | Narrow attention so suggestion has somewhere to land | B (induction helps; form matters little) | Skeleton: eye closure, breathing, and progressive relaxation only. Rapid, confusion, and startle methods are not implemented |
+| 5 | Deepening | Countdown, staircase, fractionation, arm heaviness or levitation, compounding, body scan | Say the same relaxation one layer deeper | C | Skeleton: body scan, staircase, or countdown, one main path per session. Fractionation is not implemented |
+| 6 | Imagery | A safe place; sight, sound, touch, temperature, smell; a descent metaphor that matches sleep | Give attention somewhere to stay | B | Skeleton: nine spatial layers, far to near. One fixed line: this place is safe and settled |
+| 7 | Suggestion and ego-strengthening | Short direct or permissive lines; restored sense of coping; sleep-specific lines in a sleep session | Make the direction of the session explicit | A (direction of sleep suggestions) / B (style and ego-strengthening) | Skeleton: short, positive, able to happen on their own. Sleep sessions point only toward looser, deeper, more settled. The listener’s lines are cleaned first |
+| 8 | Post-hypnotic suggestion | A light cue (breath, a shoulder dropping, a word) that can recall ease later | A conditional cue for later | B (laboratory) / I (sleep) | Skeleton: one anchor in daytime sessions only. Omitted from sleep sessions |
+| 9a | Emergence (daytime) | Bring the person back to the room with clear, light lines | Termination should be structured. The person is not left deep | B | Skeleton: daytime sessions always emerge. Fixed line: open the eyes and return to this room |
+| 9b | Sleep transition | No wake-up count; sentences get shorter and slower; an invitation to sleep | Stop the recording at the threshold of sleep | B | Skeleton: no countdown and no call to wake. Sentences shorten. Pauses lengthen as written |
 | 10 | After the session | If emotion surges, stay supportive until it eases; refer when needed | Handle uncommon difficult reactions | B | One-way audio cannot do this live. The substitute is pre-session screening plus an exit line in the script. Live clinical intervention is not planned |
 
 Twenty or thirty minutes is not an efficacy threshold. Cordi’s recording is about 13 minutes and 932 words (German, spoken slowly; read [1]). Length in Dreamscape is an experience choice.
@@ -813,9 +811,9 @@ Explicitly not built, and not a backlog item: Elman eye-lock tests, confusion, s
 
 ---
 
-## 6. AI implementation (planned)
+## 6. AI implementation
 
-Everything in this section is a **planned software design**. The repository does not contain these modules yet.
+This section is the software design and the shape of the skeleton in the repository. Sentences marked “planned” are not a finished product behavior. Live vendor accounts are outside the tests.
 
 ### 6.1 Open loop
 
@@ -925,7 +923,7 @@ The settings screen is planned to offer a test button for each capability. The r
 
 ### 6.6 Data and privacy
 
-Planned: API keys stay on the device, in encrypted storage backed by the Android Keystore (EncryptedSharedPreferences, or an equivalent). Configuration exports as JSON, with the option to omit secrets. Import writes only to the device. Backup is off, so keys are not copied into cloud backup. Logs do not contain keys. The playback service does not request the microphone. Microphone permission is requested only when the listener taps a recognition test.
+Skeleton: API keys stay on the device, in encrypted storage backed by the Android Keystore (EncryptedSharedPreferences, or an equivalent). Configuration exports as JSON, with the option to omit secrets. Import writes only to the device. Backup is off, so keys are not copied into cloud backup. Logs do not contain keys. The playback service does not request the microphone. Microphone permission is requested only when the listener taps a recognition test.
 
 ### 6.7 Modules
 
@@ -951,11 +949,9 @@ Planned project: Kotlin, Jetpack Compose, Gradle Kotlin DSL, version catalog. Ap
 
 ---
 
-## 7. Download and build (planned)
+## 7. Download and build
 
-There is a downloadable package only after the app code and the workflow are in the repository. Until then, Actions will not have this app’s APK.
-
-The planned **Build** workflow runs on push, on pull requests, and when started manually. It uses JDK 17, caches Gradle, runs `assembleDebug`, and also runs unit tests and lint when those stay quick. The debug APK is uploaded as an artifact named `dreamscape-debug-apk`. That package uses the debug signature and is for personal installation.
+The **Build** workflow runs on push, on pull requests, and when started manually. It uses JDK 17, caches Gradle, runs `assembleDebug`, and also runs unit tests and lint. The debug APK is uploaded as an artifact named `dreamscape-debug-apk`. That package uses the debug signature and is for personal installation.
 
 Locally:
 
@@ -963,13 +959,13 @@ Locally:
 ./gradlew assembleDebug
 ```
 
-The debug APK is planned to be written under `app/build/outputs/apk/debug/`.
+The debug APK is written under `app/build/outputs/apk/debug/`.
 
 A signed release build on tags is **off by default**. Turning it on requires repository secrets for a Base64-encoded keystore and the passwords, and a change to the workflow condition. The keystore file is not committed.
 
 ---
 
-## 8. Configuration (planned)
+## 8. Configuration
 
 Settings chooses an implementation for synthesis, recognition, and the chat model, and collects the fields for each.
 
